@@ -6,21 +6,24 @@ import br.com.cesarschool.poo.titulos.repositorios.RepositorioAcao;
 import java.time.LocalDate;
 
 public class MediatorAcao {
-    private static MediatorAcao instanciaUnica = new MediatorAcao();
+    private static MediatorAcao instance;
     private static RepositorioAcao repositorioAcao = new RepositorioAcao();
 
     private MediatorAcao() {
     }
 
-    public static MediatorAcao getInstanciaUnica() {
-        return instanciaUnica;
+    public static MediatorAcao getInstance() {
+        if (instance == null) {
+            instance = new MediatorAcao();
+        }
+        return instance;
     }
 
     private String validar(Acao acao){
         boolean ret = false;
 
         if (acao.getIdentificador() <= 0 || acao.getIdentificador() >= 100000){
-           return "O identificador deve ser entre 0 e 99999";
+           return "O identificador deve ser entre 1 e 99999";
         }
         if (acao.getNome() == null ||acao.getNome().trim().isEmpty()){
             return "Nome deve ser preenchido";

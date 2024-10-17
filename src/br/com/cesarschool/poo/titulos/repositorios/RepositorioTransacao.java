@@ -151,4 +151,93 @@ public class RepositorioTransacao {
 
 		return transacoes;
 	}
+	public Transacao[] buscarPorEntidadeDevedora(int identificadorEntidadeDebito) {
+		int contadorTransacoes = 0;
+
+		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+			String linha;
+			while ((linha = reader.readLine()) != null) {
+				String[] campos = linha.split(";");
+				int idEntidadeDebito = Integer.parseInt(campos[5]);
+
+				if (idEntidadeDebito == identificadorEntidadeDebito) {
+					contadorTransacoes++;
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		if (contadorTransacoes == 0) {
+			System.out.println("Nenhuma transação encontrada para a entidade devedora com o identificador: " + identificadorEntidadeDebito);
+			return null;
+		}
+
+		Transacao[] transacoes = new Transacao[contadorTransacoes];
+		int indice = 0;
+
+		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+			String linha;
+
+			while ((linha = reader.readLine()) != null) {
+				String[] campos = linha.split(";");
+				int idEntidadeDebito = Integer.parseInt(campos[5]);
+
+				if (idEntidadeDebito == identificadorEntidadeDebito) {
+
+					EntidadeOperadora entidadeCredito = new EntidadeOperadora(
+							Long.parseLong(campos[0]),
+							campos[1],
+							Double.parseDouble(campos[2])
+					);
+					entidadeCredito.creditarSaldoAcao(Double.parseDouble(campos[3]));
+					entidadeCredito.creditarSaldoTituloDivida(Double.parseDouble(campos[4]));
+
+					EntidadeOperadora entidadeDebito = new EntidadeOperadora(
+							idEntidadeDebito,
+							campos[6],
+							Double.parseDouble(campos[7])
+					);
+					entidadeDebito.creditarSaldoAcao(Double.parseDouble(campos[8]));
+					entidadeDebito.creditarSaldoTituloDivida(Double.parseDouble(campos[9]));
+
+					Acao acao = null;
+					if (!campos[10].equals("null")) {
+						acao = new Acao(
+								Integer.parseInt(campos[10]),
+								campos[11],
+								LocalDate.parse(campos[12]),
+								Double.parseDouble(campos[13])
+						);
+					}
+
+					TituloDivida tituloDivida = null;
+					if (!campos[14].equals("null")) {
+						tituloDivida = new TituloDivida(
+								Integer.parseInt(campos[14]),
+								campos[15],
+								LocalDate.parse(campos[16]),
+								Double.parseDouble(campos[17])
+						);
+					}
+
+					Transacao transacao = new Transacao(
+							entidadeCredito,
+							entidadeDebito,
+							acao,
+							tituloDivida,
+							Double.parseDouble(campos[18]),
+							LocalDateTime.parse(campos[19], dateTimeFormatter)
+					);
+
+					transacoes[indice] = transacao;
+					indice++;
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return transacoes;
+	}
 }

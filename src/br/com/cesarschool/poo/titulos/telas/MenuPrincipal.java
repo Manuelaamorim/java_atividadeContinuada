@@ -21,6 +21,7 @@ public class MenuPrincipal {
         JButton operadoraButton = new JButton("CRUD Entidade Operadora");
         JButton operacaoButton = new JButton("CRUD Operações");
         JButton tituloDividaButton = new JButton("CRUD Títulos de Dívida");
+        JButton sairButton = new JButton("Sair");
 
         acaoButton.addActionListener(new ActionListener() {
             @Override
@@ -50,10 +51,18 @@ public class MenuPrincipal {
             }
         });
 
+        sairButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
         panel.add(acaoButton);
         panel.add(operadoraButton);
         panel.add(operacaoButton);
         panel.add(tituloDividaButton);
+        panel.add(sairButton);
 
         frame.add(panel);
         frame.setVisible(true);

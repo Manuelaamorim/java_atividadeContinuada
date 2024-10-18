@@ -57,6 +57,7 @@ public class TelaEntidadeOperadora {
                     String resultado = mediator.incluir(entidade);
                     if (resultado == null) {
                         JOptionPane.showMessageDialog(null, "Entidade incluída com sucesso!");
+                        frame.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, resultado);
                     }
@@ -85,6 +86,7 @@ public class TelaEntidadeOperadora {
                     String resultado = mediator.alterar(entidade);
                     if (resultado == null) {
                         JOptionPane.showMessageDialog(null, "Entidade alterada com sucesso!");
+                        frame.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, resultado);
                     }
@@ -105,6 +107,7 @@ public class TelaEntidadeOperadora {
                     String resultado = mediator.excluir((int) identificador);
                     if (resultado == null) {
                         JOptionPane.showMessageDialog(null, "Entidade excluída com sucesso!");
+                        frame.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, resultado);
                     }
@@ -129,6 +132,8 @@ public class TelaEntidadeOperadora {
                         campoSaldoAcao.setText(String.valueOf(entidade.getSaldoAcao()));
                         campoSaldoTituloDivida.setText(String.valueOf(entidade.getSaldoTituloDivida()));
                         JOptionPane.showMessageDialog(null, "Entidade encontrada!");
+                        frame.dispose();
+
                     } else {
                         JOptionPane.showMessageDialog(null, "Entidade não encontrada.");
                     }

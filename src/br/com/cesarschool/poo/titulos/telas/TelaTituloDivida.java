@@ -53,6 +53,7 @@ public class TelaTituloDivida {
                     String resultado = mediator.incluir(titulo);
                     if (resultado == null) {
                         JOptionPane.showMessageDialog(null, "Título de Dívida incluído com sucesso!");
+                        frame.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, resultado);
                     }
@@ -78,6 +79,7 @@ public class TelaTituloDivida {
                     String resultado = mediator.alterar(titulo);
                     if (resultado == null) {
                         JOptionPane.showMessageDialog(null, "Título de Dívida alterado com sucesso!");
+                        frame.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, resultado);
                     }
@@ -98,6 +100,7 @@ public class TelaTituloDivida {
                     String resultado = mediator.excluir(identificador);
                     if (resultado == null) {
                         JOptionPane.showMessageDialog(null, "Título de Dívida excluído com sucesso!");
+                        frame.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, resultado);
                     }
@@ -121,6 +124,7 @@ public class TelaTituloDivida {
                         campoDataValidade.setText(titulo.getDataValidade().toString());
                         campoTaxaJuros.setText(String.valueOf(titulo.getTaxaJuros()));
                         JOptionPane.showMessageDialog(null, "Título de Dívida encontrado!");
+                        frame.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, "Título de Dívida não encontrado.");
                     }

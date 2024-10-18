@@ -57,6 +57,7 @@ public class TelaAcao {
                     String resultado = mediator.incluir(acao);
                     if (resultado == null) {
                         JOptionPane.showMessageDialog(null, "Ação incluída com sucesso!");
+                        frame.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, resultado);
                     }
@@ -84,6 +85,7 @@ public class TelaAcao {
                     String resultado = mediator.alterar(acao);
                     if (resultado == null) {
                         JOptionPane.showMessageDialog(null, "Ação alterada com sucesso!");
+                        frame.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, resultado);
                     }
@@ -104,6 +106,7 @@ public class TelaAcao {
                     int identificador = Integer.parseInt(campoIdentificador.getText());
                     String resultado = mediator.excluir(identificador);
                     JOptionPane.showMessageDialog(null, Objects.requireNonNullElse(resultado, "Ação excluída com sucesso!"));
+                    frame.dispose();
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Erro no identificador fornecido.");
                 }
@@ -120,6 +123,7 @@ public class TelaAcao {
                         campoDataValidade.setText(acao.getDataValidade().toString());
                         campoValorUnitario.setText(String.valueOf(acao.getValorUnitario()));
                         JOptionPane.showMessageDialog(null, "Ação encontrada!");
+                        frame.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, "Ação não encontrada.");
                     }

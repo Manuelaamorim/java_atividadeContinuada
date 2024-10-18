@@ -67,6 +67,7 @@ public class TelaTransacao {
                         JOptionPane.showMessageDialog(null, resultado);
                     } else {
                         JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
+                        frame.dispose();
                     }
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Erro nos dados fornecidos. Verifique os campos.");
@@ -103,6 +104,7 @@ public class TelaTransacao {
                     }
 
                     JOptionPane.showMessageDialog(null, extrato.toString());
+                    frame.dispose();
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Erro no ID da entidade fornecido.");
                 } catch (Exception ex) {

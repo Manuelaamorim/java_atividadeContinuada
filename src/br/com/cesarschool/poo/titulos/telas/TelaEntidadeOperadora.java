@@ -2,7 +2,6 @@ package br.com.cesarschool.poo.titulos.telas;
 
 import br.com.cesarschool.poo.titulos.entidades.EntidadeOperadora;
 import br.com.cesarschool.poo.titulos.mediators.MediatorEntidadeOperadora;
-import br.com.cesarschool.poo.titulos.repositorios.RepositorioEntidadeOperadora;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -53,6 +52,8 @@ public class TelaEntidadeOperadora {
                     double saldoTituloDivida = Double.parseDouble(campoSaldoTituloDivida.getText());
 
                     EntidadeOperadora entidade = new EntidadeOperadora(identificador, nome, autorizadoAcao);
+                    entidade.creditarSaldoAcao(saldoAcao);
+                    entidade.creditarSaldoTituloDivida(saldoTituloDivida);
                     String resultado = mediator.incluir(entidade);
                     if (resultado == null) {
                         JOptionPane.showMessageDialog(null, "Entidade incluída com sucesso!");
@@ -61,6 +62,9 @@ public class TelaEntidadeOperadora {
                     }
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Erro nos dados fornecidos. Verifique os campos.");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro inesperado: " + ex.getMessage());
                 }
             }
         });
@@ -76,6 +80,8 @@ public class TelaEntidadeOperadora {
                     double saldoTituloDivida = Double.parseDouble(campoSaldoTituloDivida.getText());
 
                     EntidadeOperadora entidade = new EntidadeOperadora(identificador, nome, autorizadoAcao);
+                    entidade.creditarSaldoAcao(saldoAcao);
+                    entidade.creditarSaldoTituloDivida(saldoTituloDivida);
                     String resultado = mediator.alterar(entidade);
                     if (resultado == null) {
                         JOptionPane.showMessageDialog(null, "Entidade alterada com sucesso!");
@@ -84,6 +90,9 @@ public class TelaEntidadeOperadora {
                     }
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Erro nos dados fornecidos. Verifique os campos.");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro inesperado: " + ex.getMessage());
                 }
             }
         });
@@ -101,6 +110,9 @@ public class TelaEntidadeOperadora {
                     }
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Erro no identificador fornecido.");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro inesperado: " + ex.getMessage());
                 }
             }
         });
@@ -122,6 +134,9 @@ public class TelaEntidadeOperadora {
                     }
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Erro no identificador fornecido.");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro inesperado: " + ex.getMessage());
                 }
             }
         });

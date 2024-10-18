@@ -2,7 +2,6 @@ package br.com.cesarschool.poo.titulos.telas;
 
 import br.com.cesarschool.poo.titulos.entidades.TituloDivida;
 import br.com.cesarschool.poo.titulos.mediators.MediatorTituloDivida;
-import br.com.cesarschool.poo.titulos.repositorios.RepositorioTituloDivida;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -59,6 +58,9 @@ public class TelaTituloDivida {
                     }
                 } catch (NumberFormatException | DateTimeParseException ex) {
                     JOptionPane.showMessageDialog(null, "Erro nos dados fornecidos. Verifique os campos.");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro inesperado: " + ex.getMessage());
                 }
             }
         });
@@ -81,6 +83,9 @@ public class TelaTituloDivida {
                     }
                 } catch (NumberFormatException | DateTimeParseException ex) {
                     JOptionPane.showMessageDialog(null, "Erro nos dados fornecidos. Verifique os campos.");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro inesperado: " + ex.getMessage());
                 }
             }
         });
@@ -98,6 +103,9 @@ public class TelaTituloDivida {
                     }
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Erro no identificador fornecido.");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro inesperado: " + ex.getMessage());
                 }
             }
         });
@@ -118,6 +126,9 @@ public class TelaTituloDivida {
                     }
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Erro no identificador fornecido.");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro inesperado: " + ex.getMessage());
                 }
             }
         });

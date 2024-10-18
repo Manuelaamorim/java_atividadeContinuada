@@ -41,10 +41,10 @@ public class MediatorAcao {
     }
 
     public String incluir(Acao acao){
-        boolean incluir = false;
+        String mensagemErro = validar(acao);
 
-        if (validar(acao) == null){
-            incluir = repositorioAcao.incluir(acao);
+        if (mensagemErro == null){
+            boolean incluir = repositorioAcao.incluir(acao);
             if (incluir){
                 return null;
             }
@@ -53,15 +53,15 @@ public class MediatorAcao {
             }
         }
         else{
-            return validar(acao);
+            return mensagemErro;
         }
     }
 
     public String alterar(Acao acao){
-        boolean alterar = false;
+        String mensagemErro = validar(acao);
 
-        if (validar(acao) == null){
-            alterar = repositorioAcao.alterar(acao);
+        if (mensagemErro == null){
+            boolean alterar = repositorioAcao.alterar(acao);
             if (alterar){
                 return null;
             }
@@ -70,7 +70,7 @@ public class MediatorAcao {
             }
         }
         else{
-            return alterar(acao);
+            return mensagemErro;
         }
     }
 

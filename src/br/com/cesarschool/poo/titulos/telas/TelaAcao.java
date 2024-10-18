@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.Objects;
+
 import br.com.cesarschool.poo.titulos.entidades.Acao;
 import br.com.cesarschool.poo.titulos.mediators.MediatorAcao;
 
@@ -58,10 +60,16 @@ public class TelaAcao {
                     } else {
                         JOptionPane.showMessageDialog(null, resultado);
                     }
-                } catch (NumberFormatException | DateTimeParseException ex) {
-                    JOptionPane.showMessageDialog(null, "Erro nos dados fornecidos. Verifique os campos.");
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro no formato dos dados numéricos. Verifique o identificador ou valor unitário.");
+                } catch (DateTimeParseException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro no formato da data. Use o formato yyyy-mm-dd.");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro inesperado: " + ex.getMessage());
                 }
             }
+
         });
 
         alterarButton.addActionListener(new ActionListener() {
@@ -79,8 +87,13 @@ public class TelaAcao {
                     } else {
                         JOptionPane.showMessageDialog(null, resultado);
                     }
-                } catch (NumberFormatException | DateTimeParseException ex) {
-                    JOptionPane.showMessageDialog(null, "Erro nos dados fornecidos. Verifique os campos.");
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro no formato dos dados numéricos. Verifique o identificador ou valor unitário.");
+                } catch (DateTimeParseException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro no formato da data. Use o formato yyyy-mm-dd.");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro inesperado: " + ex.getMessage());
                 }
             }
         });
@@ -90,11 +103,7 @@ public class TelaAcao {
                 try {
                     int identificador = Integer.parseInt(campoIdentificador.getText());
                     String resultado = mediator.excluir(identificador);
-                    if (resultado == null) {
-                        JOptionPane.showMessageDialog(null, "Ação excluída com sucesso!");
-                    } else {
-                        JOptionPane.showMessageDialog(null, resultado);
-                    }
+                    JOptionPane.showMessageDialog(null, Objects.requireNonNullElse(resultado, "Ação excluída com sucesso!"));
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Erro no identificador fornecido.");
                 }

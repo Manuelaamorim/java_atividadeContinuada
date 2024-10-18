@@ -116,6 +116,14 @@ public class MediatorOperacao {
         Transacao[] transacoesCredoras = repositorioTransacao.buscarPorEntidadeCredora(entidade);
         Transacao[] transacoesDevedoras = repositorioTransacao.buscarPorEntidadeDevedora(entidade);
 
+        if(transacoesCredoras == null){
+            transacoesCredoras = new Transacao[0];
+        }
+
+        if(transacoesDevedoras == null){
+            transacoesDevedoras = new Transacao[0];
+        }
+
         Transacao[] todasTransacoes = new Transacao[transacoesCredoras.length + transacoesDevedoras.length];
         System.arraycopy(transacoesCredoras, 0, todasTransacoes, 0, transacoesCredoras.length);
         System.arraycopy(transacoesDevedoras, 0, todasTransacoes, transacoesCredoras.length, transacoesDevedoras.length);

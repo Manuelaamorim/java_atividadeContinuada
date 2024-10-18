@@ -63,9 +63,16 @@ public class TelaTransacao {
                     }
 
                     String resultado = mediator.realizarOperacao(ehAcao, entidadeCredito, entidadeDebito, idAcaoOuTitulo, valorOperacao);
-                    JOptionPane.showMessageDialog(null, resultado);
+                    if (resultado != null) {
+                        JOptionPane.showMessageDialog(null, resultado);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
+                    }
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Erro nos dados fornecidos. Verifique os campos.");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro inesperado: " + ex.getMessage());
                 }
             }
         });
@@ -98,6 +105,9 @@ public class TelaTransacao {
                     JOptionPane.showMessageDialog(null, extrato.toString());
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Erro no ID da entidade fornecido.");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro inesperado: " + ex.getMessage());
                 }
             }
         });

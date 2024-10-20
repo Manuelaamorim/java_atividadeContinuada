@@ -34,8 +34,8 @@ public class TelaEntidadeOperadora {
         campoNome.setPreferredSize(new Dimension(250, 25));
 
         JLabel labelAutorizadoAcao = new JLabel("Autorizado Ação:");
-        JTextField campoAutorizadoAcao = new JTextField(10);
-        campoAutorizadoAcao.setPreferredSize(new Dimension(150, 25));
+        JComboBox<Boolean> comboAutorizadoAcao = new JComboBox<>(new Boolean[]{true, false});
+        comboAutorizadoAcao.setPreferredSize(new Dimension(150, 25));
 
         JLabel labelSaldoAcao = new JLabel("Saldo Ação:");
         JTextField campoSaldoAcao = new JTextField(10);
@@ -56,7 +56,7 @@ public class TelaEntidadeOperadora {
                 try {
                     long identificador = Long.parseLong(campoIdentificador.getText());
                     String nome = campoNome.getText();
-                    boolean autorizadoAcao = Boolean.parseBoolean(campoAutorizadoAcao.getText());
+                    boolean autorizadoAcao = (Boolean) comboAutorizadoAcao.getSelectedItem();
                     double saldoAcao = Double.parseDouble(campoSaldoAcao.getText());
                     double saldoTituloDivida = Double.parseDouble(campoSaldoTituloDivida.getText());
 
@@ -85,7 +85,7 @@ public class TelaEntidadeOperadora {
                 try {
                     long identificador = Long.parseLong(campoIdentificador.getText());
                     String nome = campoNome.getText();
-                    boolean autorizadoAcao = Boolean.parseBoolean(campoAutorizadoAcao.getText());
+                    boolean autorizadoAcao = (Boolean) comboAutorizadoAcao.getSelectedItem();
                     double saldoAcao = Double.parseDouble(campoSaldoAcao.getText());
                     double saldoTituloDivida = Double.parseDouble(campoSaldoTituloDivida.getText());
 
@@ -137,7 +137,7 @@ public class TelaEntidadeOperadora {
                     EntidadeOperadora entidade = mediator.buscar((int) identificador);
                     if (entidade != null) {
                         campoNome.setText(entidade.getNome());
-                        campoAutorizadoAcao.setText(String.valueOf(entidade.getAutorizadoAcao()));
+                        comboAutorizadoAcao.setSelectedItem(entidade.getAutorizadoAcao());
                         campoSaldoAcao.setText(String.valueOf(entidade.getSaldoAcao()));
                         campoSaldoTituloDivida.setText(String.valueOf(entidade.getSaldoTituloDivida()));
                         JOptionPane.showMessageDialog(null, "Entidade encontrada!");
@@ -171,7 +171,7 @@ public class TelaEntidadeOperadora {
         gbc.gridy = 2;
         panel.add(labelAutorizadoAcao, gbc);
         gbc.gridx = 1;
-        panel.add(campoAutorizadoAcao, gbc);
+        panel.add(comboAutorizadoAcao, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 3;

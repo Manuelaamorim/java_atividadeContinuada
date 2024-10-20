@@ -6,3 +6,5 @@
 20;manuelacavalcantiamorim;true;200.0;200.0
 30;aaaaaaaaaaaaaaaaaaaaaa;true;330.0;82.0
 130;ssssssssssss;true;270.0;318.0
+12376;testeautorizado;true;100.0;120.0
+24940;teste2autorizado;true;250.0;100.0

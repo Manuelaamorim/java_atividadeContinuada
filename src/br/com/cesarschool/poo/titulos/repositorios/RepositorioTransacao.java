@@ -50,10 +50,9 @@ public class RepositorioTransacao {
 		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
 			String linha;
 			while ((linha = reader.readLine()) != null) {
-				// Remover todos os caracteres invisíveis
+
 				linha = linha.replaceAll("[\\p{C}]", "").trim();
 
-				// Ignorar linhas vazias
 				if (linha.isEmpty()) {
 					System.out.println("Linha vazia ignorada.");
 					continue;
@@ -61,20 +60,6 @@ public class RepositorioTransacao {
 
 				String[] campos = linha.split(";");
 
-				// Remove espaços em branco ao redor de cada campo e imprime cada campo
-				for (int i = 0; i < campos.length; i++) {
-					campos[i] = campos[i].trim();
-					System.out.println("Campo [" + i + "]: '" + campos[i] + "'");
-				}
-
-				// Verifica o número de campos na linha
-				System.out.println("Linha lida: " + linha);
-				System.out.println("Número de campos: " + campos.length);
-
-				if (campos.length != 17) {
-					System.out.println("Erro: Linha com número incorreto de campos: " + linha);
-					continue;  // Ignora a linha se o número de campos for incorreto
-				}
 
 				int idEntidadeCredito = Integer.parseInt(campos[0]);
 				if (idEntidadeCredito == identificadorEntidadeCredito) {
@@ -97,10 +82,8 @@ public class RepositorioTransacao {
 			String linha;
 
 			while ((linha = reader.readLine()) != null) {
-				// Remover todos os caracteres invisíveis
 				linha = linha.replaceAll("[\\p{C}]", "").trim();
 
-				// Ignorar linhas vazias
 				if (linha.isEmpty()) {
 					System.out.println("Linha vazia ignorada.");
 					continue;
@@ -108,23 +91,10 @@ public class RepositorioTransacao {
 
 				String[] campos = linha.split(";");
 
-				// Remove espaços em branco ao redor de cada campo e imprime cada campo
-				for (int i = 0; i < campos.length; i++) {
-					campos[i] = campos[i].trim();
-					System.out.println("Campo [" + i + "]: '" + campos[i] + "'");
-				}
-
-				// Verifica o número de campos novamente
-				if (campos.length != 17) {
-					System.out.println("Erro: Linha com número incorreto de campos: " + linha);
-					continue;  // Ignora a linha se o número de campos for incorreto
-				}
-
 				int idEntidadeCredito = Integer.parseInt(campos[0]);
 
 				if (idEntidadeCredito == identificadorEntidadeCredito) {
 
-					// Cria a entidade de crédito
 					EntidadeOperadora entidadeCredito = new EntidadeOperadora(
 							idEntidadeCredito,
 							campos[1],
@@ -133,7 +103,6 @@ public class RepositorioTransacao {
 					entidadeCredito.creditarSaldoAcao(Double.parseDouble(campos[3]));
 					entidadeCredito.creditarSaldoTituloDivida(Double.parseDouble(campos[4]));
 
-					// Cria a entidade de débito
 					EntidadeOperadora entidadeDebito = new EntidadeOperadora(
 							Long.parseLong(campos[5]),
 							campos[6],
@@ -142,8 +111,8 @@ public class RepositorioTransacao {
 					entidadeDebito.creditarSaldoAcao(Double.parseDouble(campos[8]));
 					entidadeDebito.creditarSaldoTituloDivida(Double.parseDouble(campos[9]));
 
-					// Verifica se existe uma Acao, tratando o "null"
 					Acao acao = null;
+					TituloDivida tituloDivida = null;
 					if (!campos[10].equals("null")) {
 						acao = new Acao(
 								Integer.parseInt(campos[10]),
@@ -152,30 +121,25 @@ public class RepositorioTransacao {
 								Double.parseDouble(campos[13])
 						);
 					}
-
-					// Verifica se existe um TituloDivida, tratando o "null"
-					TituloDivida tituloDivida = null;
-					if (!campos[14].equals("null")) {
+					else{
 						tituloDivida = new TituloDivida(
-								Integer.parseInt(campos[14]),
-								campos[15],
-								LocalDate.parse(campos[16]),
-								Double.parseDouble(campos[17])
+								Integer.parseInt(campos[11]),
+								campos[12],
+								LocalDate.parse(campos[13]),
+								Double.parseDouble(campos[14])
 						);
 					}
 
-					// Verifica se o índice 18 existe antes de tentar acessar o valor
 					double valorOperacao = 0.0;
-					if (!campos[18].equals("null")) {
-						valorOperacao = Double.parseDouble(campos[18]);
+					if (!campos[15].equals("null")) {
+						valorOperacao = Double.parseDouble(campos[15]);
 					}
 
 					LocalDateTime dataHoraOperacao = null;
-					if (!campos[19].equals("null")) {
-						dataHoraOperacao = LocalDateTime.parse(campos[19], dateTimeFormatter);
+					if (!campos[16].equals("null")) {
+						dataHoraOperacao = LocalDateTime.parse(campos[16], dateTimeFormatter);
 					}
 
-					// Cria a transação
 					Transacao transacao = new Transacao(
 							entidadeCredito,
 							entidadeDebito,
@@ -202,10 +166,8 @@ public class RepositorioTransacao {
 		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
 			String linha;
 			while ((linha = reader.readLine()) != null) {
-				// Remover todos os caracteres invisíveis
 				linha = linha.replaceAll("[\\p{C}]", "").trim();
 
-				// Ignorar linhas vazias
 				if (linha.isEmpty()) {
 					System.out.println("Linha vazia ignorada.");
 					continue;
@@ -213,20 +175,6 @@ public class RepositorioTransacao {
 
 				String[] campos = linha.split(";");
 
-				// Remove espaços em branco ao redor de cada campo e imprime cada campo
-				for (int i = 0; i < campos.length; i++) {
-					campos[i] = campos[i].trim();
-					System.out.println("Campo [" + i + "]: '" + campos[i] + "'");
-				}
-
-				// Verifica o número de campos na linha
-				System.out.println("Linha lida: " + linha);
-				System.out.println("Número de campos: " + campos.length);
-
-				if (campos.length != 17) {
-					System.out.println("Erro: Linha com número incorreto de campos: " + linha);
-					continue;  // Ignora a linha se o número de campos for incorreto
-				}
 
 				int idEntidadeDebito = Integer.parseInt(campos[5]);
 				if (idEntidadeDebito == identificadorEntidadeDebito) {
@@ -249,10 +197,8 @@ public class RepositorioTransacao {
 			String linha;
 
 			while ((linha = reader.readLine()) != null) {
-				// Remover todos os caracteres invisíveis
 				linha = linha.replaceAll("[\\p{C}]", "").trim();
 
-				// Ignorar linhas vazias
 				if (linha.isEmpty()) {
 					System.out.println("Linha vazia ignorada.");
 					continue;
@@ -260,23 +206,10 @@ public class RepositorioTransacao {
 
 				String[] campos = linha.split(";");
 
-				// Remove espaços em branco ao redor de cada campo e imprime cada campo
-				for (int i = 0; i < campos.length; i++) {
-					campos[i] = campos[i].trim();
-					System.out.println("Campo [" + i + "]: '" + campos[i] + "'");
-				}
-
-				// Verifica o número de campos novamente
-				if (campos.length != 17) {
-					System.out.println("Erro: Linha com número incorreto de campos: " + linha);
-					continue;  // Ignora a linha se o número de campos for incorreto
-				}
-
 				int idEntidadeDebito = Integer.parseInt(campos[5]);
 
 				if (idEntidadeDebito == identificadorEntidadeDebito) {
 
-					// Cria a entidade de crédito
 					EntidadeOperadora entidadeCredito = new EntidadeOperadora(
 							Long.parseLong(campos[0]),
 							campos[1],
@@ -285,7 +218,6 @@ public class RepositorioTransacao {
 					entidadeCredito.creditarSaldoAcao(Double.parseDouble(campos[3]));
 					entidadeCredito.creditarSaldoTituloDivida(Double.parseDouble(campos[4]));
 
-					// Cria a entidade de débito
 					EntidadeOperadora entidadeDebito = new EntidadeOperadora(
 							idEntidadeDebito,
 							campos[6],
@@ -294,7 +226,7 @@ public class RepositorioTransacao {
 					entidadeDebito.creditarSaldoAcao(Double.parseDouble(campos[8]));
 					entidadeDebito.creditarSaldoTituloDivida(Double.parseDouble(campos[9]));
 
-					// Verifica se existe uma Acao, tratando o "null"
+					TituloDivida tituloDivida = null;
 					Acao acao = null;
 					if (!campos[10].equals("null")) {
 						acao = new Acao(
@@ -304,30 +236,24 @@ public class RepositorioTransacao {
 								Double.parseDouble(campos[13])
 						);
 					}
-
-					// Verifica se existe um TituloDivida, tratando o "null"
-					TituloDivida tituloDivida = null;
-					if (!campos[14].equals("null")) {
+					else{
 						tituloDivida = new TituloDivida(
-								Integer.parseInt(campos[14]),
-								campos[15],
-								LocalDate.parse(campos[16]),
-								Double.parseDouble(campos[17])
+								Integer.parseInt(campos[11]),
+								campos[12],
+								LocalDate.parse(campos[13]),
+								Double.parseDouble(campos[14])
 						);
 					}
-
-					// Verifica se o índice 18 existe antes de tentar acessar o valor
 					double valorOperacao = 0.0;
-					if (!campos[18].equals("null")) {
-						valorOperacao = Double.parseDouble(campos[18]);
+					if (!campos[15].equals("null")) {
+						valorOperacao = Double.parseDouble(campos[15]);
 					}
 
 					LocalDateTime dataHoraOperacao = null;
-					if (!campos[19].equals("null")) {
-						dataHoraOperacao = LocalDateTime.parse(campos[19], dateTimeFormatter);
+					if (!campos[16].equals("null")) {
+						dataHoraOperacao = LocalDateTime.parse(campos[16], dateTimeFormatter);
 					}
 
-					// Cria a transação
 					Transacao transacao = new Transacao(
 							entidadeCredito,
 							entidadeDebito,
@@ -347,8 +273,4 @@ public class RepositorioTransacao {
 
 		return transacoes;
 	}
-
-
-
-
 }

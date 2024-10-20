@@ -2,3 +2,5 @@
 2;beatrizcarlabdsp;2024-12-10;1000.0
 3;dvfdlaofpaqj;2024-11-29;2000.0
 40;manuela cavalcanti;2024-12-01;50.0
+1;testandoacao;2024-12-31;10.0
+4;testandotransacao;2024-12-31;10.0

@@ -138,11 +138,14 @@ public class RepositorioEntidadeOperadora {
 
                 if (id == identificador) {
                     System.out.println("Busca realizada com sucesso: Ação encontrada.");
-                    return new EntidadeOperadora(
+                    EntidadeOperadora entidade = new EntidadeOperadora(
                             Long.parseLong(campos[0]),
                             campos[1],
                             Boolean.parseBoolean(campos[2])
                     );
+                    entidade.creditarSaldoAcao(Double.parseDouble(campos[3]));
+                    entidade.creditarSaldoTituloDivida(Double.parseDouble(campos[4]));
+                    return entidade;
                 }
             }
         } catch (IOException e) {

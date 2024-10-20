@@ -59,7 +59,7 @@ public class MediatorOperacao {
             }
 
             entidadeCredito.creditarSaldoAcao(valor);
-            entidadeDebito.creditarSaldoAcao(valor);
+            entidadeDebito.debitarSaldoAcao(valor);
         }
 
         else {
@@ -73,7 +73,7 @@ public class MediatorOperacao {
             double valorOperacao = tituloDivida.calcularPrecoTransacao(valor);
 
             entidadeCredito.creditarSaldoTituloDivida(valorOperacao);
-            entidadeDebito.creditarSaldoTituloDivida(valorOperacao);
+            entidadeDebito.debitarSaldoTituloDivida(valorOperacao);
         }
 
         String retornoCredito = mediatorEntidadeOperadora.alterar(entidadeCredito);

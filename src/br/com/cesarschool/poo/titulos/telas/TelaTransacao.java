@@ -1,10 +1,9 @@
 package br.com.cesarschool.poo.titulos.telas;
-
 import br.com.cesarschool.poo.titulos.entidades.Transacao;
 import br.com.cesarschool.poo.titulos.mediators.MediatorOperacao;
-import br.com.cesarschool.poo.titulos.repositorios.RepositorioTransacao;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,21 +17,29 @@ public class TelaTransacao {
 
     private void criarTela() {
         JFrame frame = new JFrame("Operações de Transação");
-        JPanel panel = new JPanel();
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
         frame.setSize(600, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel labelEntidadeCredito = new JLabel("ID Entidade Crédito:");
         JTextField campoEntidadeCredito = new JTextField(10);
+        campoEntidadeCredito.setPreferredSize(new Dimension(150, 25));
 
         JLabel labelEntidadeDebito = new JLabel("ID Entidade Débito:");
         JTextField campoEntidadeDebito = new JTextField(10);
+        campoEntidadeDebito.setPreferredSize(new Dimension(150, 25));
 
         JLabel labelIdAcaoOuTitulo = new JLabel("ID Ação/Título:");
         JTextField campoIdAcaoOuTitulo = new JTextField(10);
+        campoIdAcaoOuTitulo.setPreferredSize(new Dimension(150, 25));
 
         JLabel labelValorOperacao = new JLabel("Valor da Operação:");
         JTextField campoValorOperacao = new JTextField(10);
+        campoValorOperacao.setPreferredSize(new Dimension(150, 25));
 
         JCheckBox checkAcao = new JCheckBox("Operação com Ação");
         JCheckBox checkTituloDivida = new JCheckBox("Operação com Título de Dívida");
@@ -114,18 +121,41 @@ public class TelaTransacao {
             }
         });
 
-        panel.add(labelEntidadeCredito);
-        panel.add(campoEntidadeCredito);
-        panel.add(labelEntidadeDebito);
-        panel.add(campoEntidadeDebito);
-        panel.add(labelIdAcaoOuTitulo);
-        panel.add(campoIdAcaoOuTitulo);
-        panel.add(labelValorOperacao);
-        panel.add(campoValorOperacao);
-        panel.add(checkAcao);
-        panel.add(checkTituloDivida);
-        panel.add(realizarOperacaoButton);
-        panel.add(gerarExtratoButton);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        panel.add(labelEntidadeCredito, gbc);
+        gbc.gridx = 1;
+        panel.add(campoEntidadeCredito, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panel.add(labelEntidadeDebito, gbc);
+        gbc.gridx = 1;
+        panel.add(campoEntidadeDebito, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panel.add(labelIdAcaoOuTitulo, gbc);
+        gbc.gridx = 1;
+        panel.add(campoIdAcaoOuTitulo, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        panel.add(labelValorOperacao, gbc);
+        gbc.gridx = 1;
+        panel.add(campoValorOperacao, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        panel.add(checkAcao, gbc);
+        gbc.gridx = 1;
+        panel.add(checkTituloDivida, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        panel.add(realizarOperacaoButton, gbc);
+        gbc.gridx = 1;
+        panel.add(gerarExtratoButton, gbc);
 
         frame.add(panel);
         frame.setVisible(true);
@@ -145,4 +175,3 @@ public class TelaTransacao {
         new TelaTransacao();
     }
 }
-

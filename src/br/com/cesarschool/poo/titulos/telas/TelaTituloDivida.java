@@ -1,9 +1,9 @@
 package br.com.cesarschool.poo.titulos.telas;
-
 import br.com.cesarschool.poo.titulos.entidades.TituloDivida;
 import br.com.cesarschool.poo.titulos.mediators.MediatorTituloDivida;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -19,21 +19,29 @@ public class TelaTituloDivida {
 
     private void criarTela() {
         JFrame frame = new JFrame("CRUD Título de Dívida");
-        JPanel panel = new JPanel();
-        frame.setSize(500, 400);
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        frame.setSize(550, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel labelIdentificador = new JLabel("Identificador:");
         JTextField campoIdentificador = new JTextField(10);
+        campoIdentificador.setPreferredSize(new Dimension(150, 25));
 
         JLabel labelNome = new JLabel("Nome:");
         JTextField campoNome = new JTextField(30);
+        campoNome.setPreferredSize(new Dimension(250, 25));
 
         JLabel labelDataValidade = new JLabel("Data Validade (yyyy-mm-dd):");
         JTextField campoDataValidade = new JTextField(10);
+        campoDataValidade.setPreferredSize(new Dimension(150, 25));
 
         JLabel labelTaxaJuros = new JLabel("Taxa de Juros:");
         JTextField campoTaxaJuros = new JTextField(10);
+        campoTaxaJuros.setPreferredSize(new Dimension(150, 25));
 
         JButton incluirButton = new JButton("Incluir");
         JButton alterarButton = new JButton("Alterar");
@@ -137,19 +145,41 @@ public class TelaTituloDivida {
             }
         });
 
-        panel.add(labelIdentificador);
-        panel.add(campoIdentificador);
-        panel.add(labelNome);
-        panel.add(campoNome);
-        panel.add(labelDataValidade);
-        panel.add(campoDataValidade);
-        panel.add(labelTaxaJuros);
-        panel.add(campoTaxaJuros);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        panel.add(labelIdentificador, gbc);
+        gbc.gridx = 1;
+        panel.add(campoIdentificador, gbc);
 
-        panel.add(incluirButton);
-        panel.add(alterarButton);
-        panel.add(excluirButton);
-        panel.add(buscarButton);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panel.add(labelNome, gbc);
+        gbc.gridx = 1;
+        panel.add(campoNome, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panel.add(labelDataValidade, gbc);
+        gbc.gridx = 1;
+        panel.add(campoDataValidade, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        panel.add(labelTaxaJuros, gbc);
+        gbc.gridx = 1;
+        panel.add(campoTaxaJuros, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        panel.add(incluirButton, gbc);
+        gbc.gridx = 1;
+        panel.add(alterarButton, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        panel.add(excluirButton, gbc);
+        gbc.gridx = 1;
+        panel.add(buscarButton, gbc);
 
         frame.add(panel);
         frame.setVisible(true);
@@ -169,4 +199,3 @@ public class TelaTituloDivida {
         new TelaTituloDivida();
     }
 }
-

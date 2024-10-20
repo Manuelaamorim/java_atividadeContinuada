@@ -41,10 +41,10 @@ public class MediatorOperacao {
             return "Entidade débito inexistente";
         }
         if (ehAcao){
-            if (entidadeCredito.getAutorizadoAcao() < 0){
+            if (!entidadeCredito.getAutorizadoAcao()){
                 return "Entidade de crédito não autorizada para ação";
             }
-            if (entidadeDebito.getAutorizadoAcao() < 0){
+            if (!entidadeDebito.getAutorizadoAcao()){
                 return "Entidade de débito não autorizada para ação";
             }
             Acao acao = mediatorAcao.buscar(idAcaoOuTitulo);

@@ -47,7 +47,7 @@ public class TelaEntidadeOperadora {
                 try {
                     long identificador = Long.parseLong(campoIdentificador.getText());
                     String nome = campoNome.getText();
-                    double autorizadoAcao = Double.parseDouble(campoAutorizadoAcao.getText());
+                    boolean autorizadoAcao = Boolean.parseBoolean(campoAutorizadoAcao.getText());
                     double saldoAcao = Double.parseDouble(campoSaldoAcao.getText());
                     double saldoTituloDivida = Double.parseDouble(campoSaldoTituloDivida.getText());
 
@@ -76,7 +76,7 @@ public class TelaEntidadeOperadora {
                 try {
                     long identificador = Long.parseLong(campoIdentificador.getText());
                     String nome = campoNome.getText();
-                    double autorizadoAcao = Double.parseDouble(campoAutorizadoAcao.getText());
+                    boolean autorizadoAcao = Boolean.parseBoolean(campoAutorizadoAcao.getText());
                     double saldoAcao = Double.parseDouble(campoSaldoAcao.getText());
                     double saldoTituloDivida = Double.parseDouble(campoSaldoTituloDivida.getText());
 

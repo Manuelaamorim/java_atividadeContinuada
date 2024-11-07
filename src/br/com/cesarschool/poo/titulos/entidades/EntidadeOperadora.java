@@ -1,6 +1,8 @@
 package br.com.cesarschool.poo.titulos.entidades;
 
-public class EntidadeOperadora {
+import br.com.cesarschool.poo.titulos.daogenerico.Entidade;
+
+public class EntidadeOperadora extends Entidade {
     private final long identificador;
     private String nome;
     private boolean autorizadoAcao;
@@ -56,5 +58,10 @@ public class EntidadeOperadora {
             System.out.println("Valor insuficiente");
         }
 
+    }
+
+    @Override
+    public Object getIdUnico() {
+        return null;
     }
 }

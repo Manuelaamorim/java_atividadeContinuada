@@ -1,8 +1,10 @@
 package br.com.cesarschool.poo.titulos.entidades;
 
+import br.com.cesarschool.poo.titulos.daogenerico.Entidade;
+
 import java.time.LocalDate;
 
-public class Ativo {
+public class Ativo extends Entidade {
     private final int identificador;
     private String nome;
     private LocalDate dataValidade;
@@ -27,6 +29,11 @@ public class Ativo {
     }
     public int getIdentificador(){
         return identificador;
+    }
+
+    @Override
+    public Object getIdUnico() {
+        return null;
     }
 }
 

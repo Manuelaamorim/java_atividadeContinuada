@@ -1,8 +1,11 @@
 package br.com.cesarschool.poo.titulos.entidades;
 
+import br.com.cesarschool.poo.titulos.daogenerico.Entidade;
+
 import java.time.LocalDateTime;
 
-public class Transacao {
+public class Transacao extends Entidade {
+
     private final EntidadeOperadora entidadeCredito;
     private final EntidadeOperadora entidadeDebito;
     private final Acao acao;
@@ -37,5 +40,10 @@ public class Transacao {
     }
     public LocalDateTime getDataHoraOperacao(){
         return dataHoraOperacao;
+    }
+
+    @Override
+    public Object getIdUnico() {
+        return null;
     }
 }

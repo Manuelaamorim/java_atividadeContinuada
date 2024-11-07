@@ -33,7 +33,7 @@ public class Ativo extends Entidade {
 
     @Override
     public Object getIdUnico() {
-        return null;
+        return identificador;
     }
 }
 

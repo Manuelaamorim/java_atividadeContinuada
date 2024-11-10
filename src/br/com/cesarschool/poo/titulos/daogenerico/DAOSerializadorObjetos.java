@@ -14,6 +14,7 @@ package br.com.cesarschool.poo.titulos.daogenerico;
  */
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class DAOSerializadorObjetos {
         if (arquivo.exists()) {
             return false;
         }
+        entidade.setDataHoraInclusao(LocalDateTime.now());
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(arquivo))) {
             oos.writeObject(entidade);
             return true;
@@ -47,6 +49,7 @@ public class DAOSerializadorObjetos {
         if (!arquivo.exists()) {
             return false;
         }
+        entidade.setDataHoraUltimaAlteracao(LocalDateTime.now());
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(arquivo))) {
             oos.writeObject(entidade);
             return true;

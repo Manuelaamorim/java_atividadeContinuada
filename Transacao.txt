@@ -1,4 +1,0 @@
-30;aaaaaaaaaaaaaaaaaaaaaa;true;110.0;100.0;130;ssssssssssss;true;290.0;300.0;1;testandoacao;2024-12-31;10.0;null;10.0;2024-10-20 13:47:14
-30;aaaaaaaaaaaaaaaaaaaaaa;true;310.0;100.0;110;entidadecredito;true;100.0;300.0;4;testandotransacao;2024-12-31;10.0;null;200.0;2024-10-20 13:48:48
-130;ssssssssssss;true;290.0;318.0;30;aaaaaaaaaaaaaaaaaaaaaa;true;310.0;82.0;null;101;testandotitulo;2025-05-05;10.0;18.0;2024-10-20 13:51:40
-

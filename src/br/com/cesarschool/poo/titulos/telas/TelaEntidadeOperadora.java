@@ -34,7 +34,7 @@ public class TelaEntidadeOperadora {
         campoNome.setPreferredSize(new Dimension(250, 25));
 
         JLabel labelAutorizadoAcao = new JLabel("Autorizado Ação:");
-        JComboBox<Boolean> comboAutorizadoAcao = new JComboBox<>(new Boolean[]{true, false});
+        JComboBox<Double> comboAutorizadoAcao = new JComboBox<>(new Double[]{});
         comboAutorizadoAcao.setPreferredSize(new Dimension(150, 25));
 
         JLabel labelSaldoAcao = new JLabel("Saldo Ação:");
@@ -56,7 +56,7 @@ public class TelaEntidadeOperadora {
                 try {
                     long identificador = Long.parseLong(campoIdentificador.getText());
                     String nome = campoNome.getText();
-                    boolean autorizadoAcao = (Boolean) comboAutorizadoAcao.getSelectedItem();
+                    double autorizadoAcao = (Double) comboAutorizadoAcao.getSelectedItem();
                     double saldoAcao = Double.parseDouble(campoSaldoAcao.getText());
                     double saldoTituloDivida = Double.parseDouble(campoSaldoTituloDivida.getText());
 
@@ -85,7 +85,7 @@ public class TelaEntidadeOperadora {
                 try {
                     long identificador = Long.parseLong(campoIdentificador.getText());
                     String nome = campoNome.getText();
-                    boolean autorizadoAcao = (Boolean) comboAutorizadoAcao.getSelectedItem();
+                    double autorizadoAcao = (Double) comboAutorizadoAcao.getSelectedItem();
                     double saldoAcao = Double.parseDouble(campoSaldoAcao.getText());
                     double saldoTituloDivida = Double.parseDouble(campoSaldoTituloDivida.getText());
 

@@ -3,6 +3,7 @@ package br.com.cesarschool.poo.titulos.entidades;
 import br.com.cesarschool.poo.titulos.daogenerico.Entidade;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Transacao extends Entidade {
 
@@ -26,24 +27,46 @@ public class Transacao extends Entidade {
     public EntidadeOperadora getEntidadeCredito() {
         return entidadeCredito;
     }
+
     public EntidadeOperadora getEntidadeDebito() {
         return entidadeDebito;
     }
-    public Acao getAcao(){
+
+    public Acao getAcao() {
         return acao;
     }
-    public TituloDivida getTituloDivida(){
+
+    public TituloDivida getTituloDivida() {
         return tituloDivida;
     }
-    public double getValorOperacao(){
+
+    public double getValorOperacao() {
         return valorOperacao;
     }
-    public LocalDateTime getDataHoraOperacao(){
+
+    public LocalDateTime getDataHoraOperacao() {
         return dataHoraOperacao;
     }
 
     @Override
-    public Object getIdUnico() {
-        return null;
+    public String getIdUnico() {
+        return entidadeCredito.getIdentificador() + "-" +
+                entidadeDebito.getIdentificador() + "-" +
+                dataHoraOperacao.toString().replaceAll("[:.]", "-");
+    }
+
+    // Sobrescrita do método equals
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true; // Mesma referência
+        if (obj == null || getClass() != obj.getClass()) return false; // Classes diferentes
+        Transacao transacao = (Transacao) obj; // Casting seguro
+        return Objects.equals(getIdUnico(), transacao.getIdUnico()); // Comparação baseada no ID único
+    }
+
+    // Sobrescrita do método hashCode
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIdUnico()); // Gera um hash baseado no ID único
     }
 }

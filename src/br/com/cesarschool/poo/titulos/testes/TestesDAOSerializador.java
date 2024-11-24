@@ -9,7 +9,8 @@ import org.junit.jupiter.api.Assertions;
 import br.com.cesarschool.poo.titulos.daogenerico.DAOSerializadorObjetos;
 import br.com.cesarschool.poo.titulos.daogenerico.Entidade;
 
-public class TestesDAOSerializador {
+
+public class TestesDAOSerializador extends TesteGeral {
     private static final String NOME_2 = "ENT NEW";
     private static final String ID_2 = "2";
     private static final String NOME_1 = "ENT 1";
@@ -32,30 +33,7 @@ public class TestesDAOSerializador {
             return nome;
         }
     }
-    private static final String SEP_ARQUIVO = System.getProperty("file.separator");
-    private static final String PONTO = ".";
-    private static final String NOME_DIR = PONTO + SEP_ARQUIVO + EntidadeTeste.class.getSimpleName();
     private static final DAOSerializadorObjetos DAO = new DAOSerializadorObjetos(EntidadeTeste.class);
-    private void excluirArquivosDiretorio() {
-        File dir = new File(NOME_DIR);
-        File[] arqs = dir.listFiles();
-        if (arqs != null && arqs.length > 0) {
-            for (File file : arqs) {
-                file.delete();
-            }
-        }
-    }
-    private int obterQtdArquivosDir(String caminhoDir) {
-        File[] files = (new File(caminhoDir)).listFiles();
-        if (files == null) {
-            return 0;
-        } else {
-            return files.length;
-        }
-    }
-    private String obterNomeArquivo(EntidadeTeste ent) {
-        return NOME_DIR + SEP_ARQUIVO + ent.getIdUnico();
-    }
     @Test
     public void testEntidade() {
         Class<Entidade> classe = Entidade.class;

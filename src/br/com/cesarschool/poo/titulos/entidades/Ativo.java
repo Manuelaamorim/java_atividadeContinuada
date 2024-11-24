@@ -9,6 +9,7 @@ public class Ativo extends Entidade {
     private String nome;
     private LocalDate dataValidade;
 
+
     public Ativo(int identificador, String nome, LocalDate dataValidade){
         this.identificador = identificador;
         this.nome = nome;
@@ -32,8 +33,8 @@ public class Ativo extends Entidade {
     }
 
     @Override
-    public Object getIdUnico() {
-        return identificador;
+    public String getIdUnico() {
+        return String.valueOf(identificador);
     }
 }
 

@@ -2,23 +2,7 @@ package br.com.cesarschool.poo.titulos.daogenerico;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-/*
- * Esta classe representa uma superclasse de todas as entidades.
- *
- * Deve ter os seguintes atributos (com respectivos set e get):
- *	LocalDateTime dataHoraInclusao,
- *  LocalDateTime dataHoraUltimaAlteracao,
- *	String usuarioInclusao e
- *	String usuarioUltimaAlteracao
- *
- * Deve ter um único construtor sem parâmetros.
- *
- * Deve ser abstrata.
- *
- * Deve ter um método abstrato getIdUnico().
- *
- * Deve implementar a interface Serializable do JAVA
- */
+
 public abstract class Entidade implements Serializable{
 
     private LocalDateTime dataHoraInclusao;
@@ -62,6 +46,6 @@ public abstract class Entidade implements Serializable{
         this.usuarioUltimaAlteracao = usuarioUltimaAlteracao;
     }
 
-    public abstract Object getIdUnico();
+    public abstract String getIdUnico();
 }
 

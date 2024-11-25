@@ -27,10 +27,10 @@ public class TesteRepositorioGeral extends TesteGeral {
 	@Test
 	public void testDAO01() {
 		Class<?> c = RepositorioGeral.class;
-		Assertions.assertEquals(c.getModifiers(), 1025);		
+		Assertions.assertEquals(c.getModifiers(), 1025);
 		try {
 			Method m = c.getMethod("getClasseEntidade", null);
-			Assertions.assertEquals(m.getModifiers(), 1025);		
+			Assertions.assertEquals(m.getModifiers(), 1025);
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assertions.fail();
@@ -39,24 +39,24 @@ public class TesteRepositorioGeral extends TesteGeral {
 	@Test
 	public void testDAO02() {
 		RepositorioGeral dao = new RepositorioAcao();
-		Assertions.assertEquals(dao.getClasseEntidade(), Acao.class);		
+		Assertions.assertEquals(dao.getClasseEntidade(), Acao.class);
 	}
 	@Test
 	public void testDAO03() {
 		RepositorioGeral dao = new RepositorioTituloDivida();
 		Assertions.assertEquals(dao.getClasseEntidade(), TituloDivida.class);
-		
-	}	
+
+	}
 	@Test
 	public void testDAO04() {
 		RepositorioGeral dao = new RepositorioEntidadeOperadora();
 		Assertions.assertEquals(dao.getClasseEntidade(), EntidadeOperadora.class);
-		
-	}	
+
+	}
 	@Test
 	public void testDAO05() {
 		RepositorioGeral dao = new RepositorioTransacao();
 		Assertions.assertEquals(dao.getClasseEntidade(), Transacao.class);
-		
-	}	
+
+	}
 }

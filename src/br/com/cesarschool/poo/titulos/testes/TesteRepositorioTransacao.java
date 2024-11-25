@@ -18,13 +18,14 @@ import br.com.cesarschool.poo.titulos.daogenerico.DAOSerializadorObjetos;
 public class TesteRepositorioTransacao extends TesteGeral {
 	private static final RepositorioTransacao DAO = new RepositorioTransacao();
 	private static final String NOME_DIR_TRANSACAO = PONTO + SEP_ARQUIVO + Transacao.class.getSimpleName();
-	
+
 	@Test
 	public void testDAO00() {
 		Assertions.assertTrue(DAO instanceof RepositorioGeral);
 		DAOSerializadorObjetos dao = DAO.getDao();
 		Assertions.assertNotNull(dao);
 	}
+
 	@Test
 	public void testDAO01() {
 		excluirArquivosDiretorio(NOME_DIR_TRANSACAO);
@@ -32,10 +33,11 @@ public class TesteRepositorioTransacao extends TesteGeral {
 		EntidadeOperadora eaC = new EntidadeOperadora(2, "EO1", 100.0);
 		EntidadeOperadora eaD = new EntidadeOperadora(3, "EO2", 101.0);
 		Transacao tr = new Transacao(eaC, eaD, acao, null, 10.0, LocalDateTime.now());
-		DAO.incluir(tr);		
-		Assertions.assertEquals(obterQtdArquivosDir(NOME_DIR_TRANSACAO), 1); 
+		DAO.incluir(tr);
+		Assertions.assertEquals(obterQtdArquivosDir(NOME_DIR_TRANSACAO), 1);
 		Assertions.assertTrue(new File(obterNomeArquivo(NOME_DIR_TRANSACAO, tr)).exists());
 	}
+
 	@Test
 	public void testDAO02() {
 		excluirArquivosDiretorio(NOME_DIR_TRANSACAO);
@@ -43,8 +45,8 @@ public class TesteRepositorioTransacao extends TesteGeral {
 		EntidadeOperadora eaC = new EntidadeOperadora(5, "EO5", 103.0);
 		EntidadeOperadora eaD = new EntidadeOperadora(6, "EO6", 104.0);
 		Transacao tr = new Transacao(eaC, eaD, null, titulo, 11.0, LocalDateTime.now());
-		DAO.incluir(tr);		
-		Assertions.assertEquals(obterQtdArquivosDir(NOME_DIR_TRANSACAO), 1); 
+		DAO.incluir(tr);
+		Assertions.assertEquals(obterQtdArquivosDir(NOME_DIR_TRANSACAO), 1);
 		Assertions.assertTrue(new File(obterNomeArquivo(NOME_DIR_TRANSACAO, tr)).exists());
 	}
 }

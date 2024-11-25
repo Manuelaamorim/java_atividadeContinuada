@@ -1,21 +1,48 @@
 package br.com.cesarschool.poo.titulos.repositorios;
 
 import br.com.cesarschool.poo.titulos.daogenerico.Entidade;
-import br.com.cesarschool.poo.titulos.entidades.Acao;
-import br.com.cesarschool.poo.titulos.entidades.EntidadeOperadora;
-import br.com.cesarschool.poo.titulos.entidades.TituloDivida;
 import br.com.cesarschool.poo.titulos.entidades.Transacao;
-import java.io.*;
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class RepositorioTransacao extends RepositorioGeral<Transacao>{
+public class RepositorioTransacao extends RepositorioGeral<Transacao> {
+
 	public RepositorioTransacao() {
 		super(Transacao.class);
+	}
+
+	public boolean incluir(Transacao transacao) {
+		if (buscar(transacao.getIdUnico()) != null) {
+			System.out.println("Inclusão falhou: identificador duplicado.");
+			return false;
+		}
+		transacao.setDataHoraInclusao(LocalDateTime.now());
+		return super.incluir(transacao);
+	}
+
+	public boolean alterar(Transacao transacao) {
+		if (buscar(transacao.getIdUnico()) == null) {
+			System.out.println("Alteração falhou: identificador não encontrado.");
+			return false;
+		}
+		transacao.setDataHoraUltimaAlteracao(LocalDateTime.now());
+		return super.alterar(transacao);
+	}
+
+	@Override
+	public boolean excluir(String identificador) {
+		if (buscar(identificador) == null) {
+			System.out.println("Exclusão falhou: identificador não encontrado.");
+			return false;
+		}
+		return super.excluir(identificador);
+	}
+
+	public Transacao buscar(String identificador) {
+		return super.buscar(identificador);
 	}
 
 	public Transacao[] buscarPorEntidadeCredora(long identificadorEntidadeCredito) {
@@ -44,15 +71,27 @@ public class RepositorioTransacao extends RepositorioGeral<Transacao>{
 			}
 		}
 
+		// Ordena as transações por ID único
 		transacoesFiltradas.sort(Comparator.comparing(Transacao::getIdUnico));
 		System.out.println("Filtrando transações para identificador: " + identificadorEntidade);
-		for (Transacao transacao : transacoesFiltradas) {
-			System.out.println("Transação correspondente: " + transacao.getIdUnico());
-		}
 
 		return transacoesFiltradas.toArray(new Transacao[0]);
 	}
 
+	public Transacao[] buscarTodas() {
+		Entidade[] todasEntidades = getDao().buscarTodos();
+		List<Transacao> transacoes = new ArrayList<>();
+
+		for (Entidade entidade : todasEntidades) {
+			if (entidade instanceof Transacao) {
+				transacoes.add((Transacao) entidade);
+			}
+		}
+
+		return transacoes.toArray(new Transacao[0]);
+	}
+
+	@Override
 	public Class<?> getClasseEntidade() {
 		return Transacao.class;
 	}

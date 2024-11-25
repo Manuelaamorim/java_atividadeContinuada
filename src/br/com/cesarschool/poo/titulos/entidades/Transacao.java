@@ -4,8 +4,9 @@ import br.com.cesarschool.poo.titulos.daogenerico.Entidade;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import br.com.cesarschool.poo.titulos.utils.Comparavel;
 
-public class Transacao extends Entidade {
+public class Transacao extends Entidade implements Comparavel{
 
     private final EntidadeOperadora entidadeCredito;
     private final EntidadeOperadora entidadeDebito;
@@ -55,7 +56,6 @@ public class Transacao extends Entidade {
                 dataHoraOperacao.toString().replaceAll("[:.]", "-");
     }
 
-    // Sobrescrita do método equals
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true; // Mesma referência
@@ -64,9 +64,21 @@ public class Transacao extends Entidade {
         return Objects.equals(getIdUnico(), transacao.getIdUnico()); // Comparação baseada no ID único
     }
 
-    // Sobrescrita do método hashCode
     @Override
     public int hashCode() {
         return Objects.hash(getIdUnico()); // Gera um hash baseado no ID único
     }
+    @Override
+    public int comparar(Comparavel outra) {
+        if (!(outra instanceof Transacao)) {
+            throw new IllegalArgumentException("O objeto comparado não é uma instância de Transacao.");
+        }
+        Transacao outraTransacao = (Transacao) outra;
+
+        if (this.dataHoraOperacao == null || outraTransacao.dataHoraOperacao == null) {
+            throw new NullPointerException("A dataHoraOperacao não pode ser nula para a comparação.");
+        }
+        return outraTransacao.getDataHoraOperacao().compareTo(this.getDataHoraOperacao());
+    }
+
 }

@@ -1,4 +1,4 @@
-package br.com.cesarschool.poo.titulos.testes;
+package br.gov.cesarschool.poo.testes;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -13,7 +13,7 @@ import br.com.cesarschool.poo.titulos.entidades.TituloDivida;
 import br.com.cesarschool.poo.titulos.entidades.Transacao;
 import br.com.cesarschool.poo.titulos.repositorios.RepositorioGeral;
 import br.com.cesarschool.poo.titulos.repositorios.RepositorioTransacao;
-import br.com.cesarschool.poo.titulos.daogenerico.DAOSerializadorObjetos;
+import br.gov.cesarschool.poo.daogenerico.DAOSerializadorObjetos;
 
 public class TesteRepositorioTransacao extends TesteGeral {
 	private static final RepositorioTransacao DAO = new RepositorioTransacao();

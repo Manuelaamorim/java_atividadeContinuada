@@ -1,6 +1,6 @@
 package br.com.cesarschool.poo.titulos.entidades;
 
-import br.com.cesarschool.poo.titulos.daogenerico.Entidade;
+import br.gov.cesarschool.poo.daogenerico.Entidade;
 
 import java.time.LocalDateTime;
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package br.com.cesarschool.poo.titulos.testes;
+package br.gov.cesarschool.poo.testes;
 
 import java.io.File;
 import org.junit.Test;
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import br.com.cesarschool.poo.titulos.entidades.EntidadeOperadora;
 import br.com.cesarschool.poo.titulos.repositorios.RepositorioEntidadeOperadora;
 import br.com.cesarschool.poo.titulos.repositorios.RepositorioGeral;
-import br.com.cesarschool.poo.titulos.daogenerico.DAOSerializadorObjetos;
+import br.gov.cesarschool.poo.daogenerico.DAOSerializadorObjetos;
 
 public class TesteRepositorioEntidadeOperadora extends TesteGeral {
 	private static final RepositorioEntidadeOperadora DAO = new RepositorioEntidadeOperadora();

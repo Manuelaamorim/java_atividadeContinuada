@@ -20,7 +20,6 @@ public class RelatorioTransacaoBroker {
         RepositorioTransacao repositorio = new RepositorioTransacao();
         Transacao[] transacoes = repositorio.buscarTodas();
 
-        // Ordenar por dataHoraOperacao
         Arrays.sort(transacoes, Comparator.comparing(Transacao::getDataHoraOperacao).reversed());
         return transacoes;
     }
@@ -29,7 +28,6 @@ public class RelatorioTransacaoBroker {
         RepositorioTransacao repositorio = new RepositorioTransacao();
         Transacao[] transacoes = repositorio.buscarTodas();
 
-        // Ordenar por nome da entidade credora
         Arrays.sort(transacoes, Comparator.comparing(t -> t.getEntidadeCredito().getNome()));
         return transacoes;
     }

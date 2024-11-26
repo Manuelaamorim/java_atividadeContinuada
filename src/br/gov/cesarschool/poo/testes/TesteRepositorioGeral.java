@@ -1,6 +1,5 @@
-package br.com.cesarschool.poo.titulos.testes;
+package br.gov.cesarschool.poo.testes;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import org.junit.Test;
@@ -15,7 +14,7 @@ import br.com.cesarschool.poo.titulos.repositorios.RepositorioEntidadeOperadora;
 import br.com.cesarschool.poo.titulos.repositorios.RepositorioGeral;
 import br.com.cesarschool.poo.titulos.repositorios.RepositorioTituloDivida;
 import br.com.cesarschool.poo.titulos.repositorios.RepositorioTransacao;
-import br.com.cesarschool.poo.titulos.daogenerico.DAOSerializadorObjetos;
+import br.gov.cesarschool.poo.daogenerico.DAOSerializadorObjetos;
 
 public class TesteRepositorioGeral extends TesteGeral {
 	@Test
